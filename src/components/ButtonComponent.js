@@ -1,5 +1,7 @@
 import React from "react";
-import { Pressable, Text, StyleSheet, Platform } from "react-native";
+import { Pressable, Text, StyleSheet, Dimensions } from "react-native";
+
+const { height, width } = Dimensions.get("window");
 
 const ButtonComponent = ({ onPress, title }) => {
   return (
@@ -16,8 +18,8 @@ const ButtonComponent = ({ onPress, title }) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#28AF6E",
-    padding: 10,
-    borderRadius: 5,
+    paddingVertical: 0.022 * height,
+    borderRadius: width < 380 ? 11 : 12,
   },
   text: {
     color: "white",

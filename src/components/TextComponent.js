@@ -1,14 +1,14 @@
 import { Text, Dimensions } from "react-native";
 import React from "react";
-import colors from "../constants/Colors";
 
 const { width, height } = Dimensions.get("window");
 const diag = Math.sqrt(width * width + height * height);
 
-const TextComponent = ({ size, style, children, style }) => {
+const TextComponent = ({ size, textStyle, children, style }) => {
   let fontSize;
   let fontFamily;
 
+  //responsive fontsize
   switch (size) {
     case "xs":
       fontSize = diag * 0.015;
@@ -31,24 +31,12 @@ const TextComponent = ({ size, style, children, style }) => {
     case "xxl":
       fontSize = diag * 0.045;
       break;
-    case "3xl":
-      fontSize = diag * 0.05;
-      break;
-    case "4xl":
-      fontSize = diag * 0.055;
-      break;
-    case "5xl":
-      fontSize = diag * 0.06;
-      break;
     default:
       fontSize = diag * 0.025;
       break;
   }
 
-  switch (style) {
-    case "regular":
-      fontFamily = "Rubik-Regular";
-      break;
+  switch (textStyle) {
     case "medium":
       fontFamily = "Rubik-Medium";
       break;
@@ -63,6 +51,7 @@ const TextComponent = ({ size, style, children, style }) => {
       break;
 
     default:
+      fontFamily = "Rubik-Regular";
       break;
   }
 

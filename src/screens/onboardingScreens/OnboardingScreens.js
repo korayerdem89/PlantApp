@@ -1,10 +1,11 @@
 import { StyleSheet, Text } from "react-native";
 import React from "react";
 import OnboardingLayout from "../../layouts/onboarding/OnboardingLayout";
+import TextComponent from "../../components/TextComponent";
 const OnboardingScreens = () => {
   return (
     <OnboardingLayout>
-      <Text>OnboardingScreens</Text>
+      <TextComponent size="2xl">DENEME YAZISI</TextComponent>
     </OnboardingLayout>
   );
 };
