@@ -1,7 +1,7 @@
 import React from "react";
-import { Pressable, Text, StyleSheet, Dimensions } from "react-native";
-
-const { height, width } = Dimensions.get("window");
+import { Pressable, StyleSheet, Dimensions } from "react-native";
+import TextComponent from "./TextComponent";
+const { width } = Dimensions.get("window");
 
 const ButtonComponent = ({ onPress, title, style }) => {
   return (
@@ -10,7 +10,9 @@ const ButtonComponent = ({ onPress, title, style }) => {
       onPress={onPress}
       android_ripple={{ color: "white" }}
     >
-      <Text style={styles.text}>{title}</Text>
+      <TextComponent size="s" textStyle="semibold" style={styles.text}>
+        {title}
+      </TextComponent>
     </Pressable>
   );
 };
@@ -18,8 +20,8 @@ const ButtonComponent = ({ onPress, title, style }) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#28AF6E",
-    paddingVertical: 0.024 * height,
-    borderRadius: width < 380 ? 11 : 12,
+    paddingVertical: 18,
+    borderRadius: width < 380 ? 10 : 12,
   },
   text: {
     color: "white",

@@ -11,7 +11,7 @@ import ButtonComponent from "../../components/ButtonComponent";
 import TextComponent from "../../components/TextComponent";
 import { colors } from "../../constants/theme";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 const backgroundImageData = [
   { bg: require("../../../assets/OnboardingBackgrounds/getStarted_bg.png") },
@@ -70,12 +70,12 @@ const OnboardingScreens = () => {
           title="Get Started"
           onPress={handlePress}
         />
-        {
+        <View style={styles.bottomTextOrIndicator}>
           <TextComponent size="xs" textStyle="light" style={styles.legalText}>
             By tapping next, you are agreeing to PlantID Terms of Use & Privacy
             Policy.
           </TextComponent>
-        }
+        </View>
       </View>
     </View>
   );
@@ -99,16 +99,21 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     paddingHorizontal: 24,
-    bottom: 12.5,
+    bottom: 20,
     alignItems: "center",
   },
   button: {
     width: "100%",
   },
   legalText: {
-    marginTop: 17,
     color: colors.legalTextColor,
     textAlign: "center",
+  },
+  bottomTextOrIndicator: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
     width: "80%",
+    marginTop: 20,
   },
 });
