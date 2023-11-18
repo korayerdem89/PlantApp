@@ -13,10 +13,23 @@ import { colors } from "../../constants/theme";
 
 const { width } = Dimensions.get("window");
 
-const backgroundImageData = [
-  { bg: require("../../../assets/OnboardingBackgrounds/getStarted_bg.png") },
-  { bg: require("../../../assets/OnboardingBackgrounds/onboard1_bg.png") },
-  { bg: require("../../../assets/OnboardingBackgrounds/onboard2_bg.png") },
+const onboardingItems = [
+  {
+    id: 0,
+    bg: require("../../../assets/OnboardingBackgrounds/getStarted_bg.png"),
+    legal:
+      "By tapping next, you are agreeing to PlantID Terms of Use & Privacy Policy.",
+  },
+  {
+    id: 1,
+    bg: require("../../../assets/OnboardingBackgrounds/onboard1_bg.png"),
+    indicator: "indicator",
+  },
+  {
+    id: 2,
+    bg: require("../../../assets/OnboardingBackgrounds/onboard2_bg.png"),
+    indicator: "indicator",
+  },
 ];
 
 const OnboardingScreens = () => {
@@ -26,7 +39,7 @@ const OnboardingScreens = () => {
   const handlePress = useCallback(() => {
     setCurrentIndex((prevIndex) => {
       const nextIndex = prevIndex + 1;
-      if (nextIndex < backgroundImageData.length) {
+      if (nextIndex < onboardingItems.length) {
         flatListRef.current.scrollToOffset({
           animated: true,
           offset: nextIndex * width,
@@ -41,8 +54,9 @@ const OnboardingScreens = () => {
     <View style={styles.container}>
       <FlatList
         ref={flatListRef}
-        data={backgroundImageData}
+        data={onboardingItems}
         horizontal
+        keyExtractor={(item) => item.id.toString()}
         pagingEnabled
         scrollEnabled={false}
         showsHorizontalScrollIndicator={false}
@@ -57,7 +71,6 @@ const OnboardingScreens = () => {
             </View>
           </ImageBackground>
         )}
-        keyExtractor={(_, index) => index.toString()}
         getItemLayout={(_, index) => ({
           length: width,
           offset: width * index,
@@ -71,10 +84,26 @@ const OnboardingScreens = () => {
           onPress={handlePress}
         />
         <View style={styles.bottomTextOrIndicator}>
-          <TextComponent size="xs" textStyle="light" style={styles.legalText}>
-            By tapping next, you are agreeing to PlantID Terms of Use & Privacy
-            Policy.
-          </TextComponent>
+          {onboardingItems[currentIndex].legal && (
+            <TextComponent size="xs" textStyle="light" style={styles.legalText}>
+              {onboardingItems[currentIndex].legal}
+            </TextComponent>
+          )}
+          {onboardingItems[currentIndex].indicator && (
+            <View style={styles.indicatorContainer}>
+              {onboardingItems.map((_, i) => {
+                return (
+                  <View
+                    key={i}
+                    style={[
+                      styles.dot,
+                      i + 1 === currentIndex && styles.dotActive,
+                    ]}
+                  />
+                );
+              })}
+            </View>
+          )}
         </View>
       </View>
     </View>
@@ -99,7 +128,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     paddingHorizontal: 24,
-    bottom: 20,
+    bottom: 8,
     alignItems: "center",
   },
   button: {
@@ -114,6 +143,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "80%",
-    marginTop: 20,
+    marginTop: 15,
+    height: 35,
+  },
+  indicatorContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+  },
+  dot: {
+    marginHorizontal: 4,
+    height: 6,
+    width: 6,
+    borderRadius: 5,
+    backgroundColor: "rgba(19,35,27,0.25)",
+  },
+  dotActive: {
+    backgroundColor: "rgba(19,35,27,1)",
+    height: 10,
+    width: 10,
   },
 });
