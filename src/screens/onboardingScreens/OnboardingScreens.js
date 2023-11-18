@@ -30,6 +30,11 @@ const onboardingItems = [
     bg: require("../../../assets/OnboardingBackgrounds/onboard2_bg.png"),
     indicator: "indicator",
   },
+  {
+    id: 3,
+    bg: require("../../../assets/OnboardingBackgrounds/paywall_bg.png"),
+    paywall: true,
+  },
 ];
 
 const OnboardingScreens = () => {
@@ -68,6 +73,11 @@ const OnboardingScreens = () => {
           >
             <View style={styles.renderContainer}>
               <TextComponent>{item.title}</TextComponent>
+              {item.paywall && (
+                <View style={styles.paywallContainer}>
+                  <TextComponent>paywall</TextComponent>
+                </View>
+              )}
             </View>
           </ImageBackground>
         )}
@@ -77,6 +87,7 @@ const OnboardingScreens = () => {
           index,
         })}
       />
+
       <View style={styles.bottomContainer}>
         <ButtonComponent
           style={styles.button}
@@ -117,12 +128,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   renderContainer: {
+    flex: 1,
     paddingHorizontal: 24,
     paddingTop: getStatusBarHeight() + 12,
-    paddingBottom: 42,
+    justifyContent: "space-between",
   },
   image: {
     width,
+  },
+  paywallContainer: {
+    bottom: 146,
+    height: 380,
   },
   bottomContainer: {
     position: "absolute",
@@ -130,6 +146,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     bottom: 8,
     alignItems: "center",
+    height: 120,
   },
   button: {
     width: "100%",

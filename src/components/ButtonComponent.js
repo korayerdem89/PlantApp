@@ -10,7 +10,7 @@ const ButtonComponent = ({ onPress, title, style }) => {
       onPress={onPress}
       android_ripple={{ color: "white" }}
     >
-      <TextComponent size="s" textStyle="semibold" style={styles.text}>
+      <TextComponent size="xs" textStyle="semibold" style={styles.text}>
         {title}
       </TextComponent>
     </Pressable>
