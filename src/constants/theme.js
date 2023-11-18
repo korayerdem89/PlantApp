@@ -9,6 +9,7 @@ const fonts = {
 const colors = {
   primary: "green",
   dark: "#000",
+  legalTextColor: "rgba(89,113,101,0.7)",
 };
 
 export { fonts, colors };
