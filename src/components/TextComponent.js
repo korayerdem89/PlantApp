@@ -26,7 +26,7 @@ const TextComponent = ({ size, textStyle, children, style }) => {
       fontSize = diag * 0.032;
       break;
     case "xl":
-      fontSize = diag * 0.35;
+      fontSize = diag * 0.035;
       break;
     case "xxl":
       fontSize = diag * 0.04;
@@ -37,6 +37,9 @@ const TextComponent = ({ size, textStyle, children, style }) => {
   }
 
   switch (textStyle) {
+    case "light":
+      fontFamily = "Rubik-Light";
+      break;
     case "medium":
       fontFamily = "Rubik-Medium";
       break;

@@ -75,7 +75,16 @@ const OnboardingScreens = () => {
               <TextComponent>{item.title}</TextComponent>
               {item.paywall && (
                 <View style={styles.paywallContainer}>
-                  <TextComponent>paywall</TextComponent>
+                  <TextComponent
+                    size="l"
+                    textStyle="light"
+                    style={{ color: "white" }}
+                  >
+                    <TextComponent textStyle="bold" size="l">
+                      PlantApp{" "}
+                    </TextComponent>
+                    Premium
+                  </TextComponent>
                 </View>
               )}
             </View>
