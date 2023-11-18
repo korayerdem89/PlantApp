@@ -5,13 +5,14 @@ import {
   Dimensions,
   FlatList,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import ButtonComponent from "../../components/ButtonComponent";
 import TextComponent from "../../components/TextComponent";
 import { colors } from "../../constants/theme";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 const onboardingItems = [
   {
@@ -34,6 +35,11 @@ const onboardingItems = [
     id: 3,
     bg: require("../../../assets/OnboardingBackgrounds/paywall_bg.png"),
     paywall: true,
+    paywallSlide: [
+      { id: 0, title: "Unlimited", subtitle: "Plant Identify" },
+      { id: 1, title: "Faster", subtitle: "Process" },
+      { id: 2, title: "Detailed", subtitle: "Plant Care" },
+    ],
   },
 ];
 
@@ -78,13 +84,42 @@ const OnboardingScreens = () => {
                   <TextComponent
                     size="l"
                     textStyle="light"
-                    style={{ color: "white" }}
+                    style={{ color: "white", lineHeight: 35 }}
                   >
                     <TextComponent textStyle="bold" size="l">
                       PlantApp{" "}
                     </TextComponent>
                     Premium
                   </TextComponent>
+                  <TextComponent
+                    style={{ color: "rgba(255,255,255,0.7)" }}
+                    size="s"
+                    textStyle="light"
+                  >
+                    Access All Features
+                  </TextComponent>
+                  <ScrollView horizontal>
+                    {item.paywallSlide.map((slide) => {
+                      return (
+                        <View style={styles.featuresCard} key={slide.id}>
+                          <TextComponent
+                            size="l"
+                            textStyle="light"
+                            style={{ color: "white" }}
+                          >
+                            {slide.title}
+                          </TextComponent>
+                          <TextComponent
+                            size="s"
+                            textStyle="light"
+                            style={{ color: "rgba(255,255,255,0.7)" }}
+                          >
+                            {slide.subtitle}
+                          </TextComponent>
+                        </View>
+                      );
+                    })}
+                  </ScrollView>
                 </View>
               )}
             </View>
@@ -147,7 +182,7 @@ const styles = StyleSheet.create({
   },
   paywallContainer: {
     bottom: 146,
-    height: 380,
+    height: height > 720 ? 380 : 320,
   },
   bottomContainer: {
     position: "absolute",
@@ -189,5 +224,14 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(19,35,27,1)",
     height: 10,
     width: 10,
+  },
+  featuresCard: {
+    marginTop: 20,
+    padding: 16,
+    marginRight: 8,
+    backgroundColor: "red",
+    width: 0.39 * width,
+    height: 0.31 * width,
+    borderRadius: 14,
   },
 });
