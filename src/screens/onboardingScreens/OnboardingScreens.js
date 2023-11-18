@@ -10,16 +10,13 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import ButtonComponent from "../../components/ButtonComponent";
 import TextComponent from "../../components/TextComponent";
 import { colors } from "../../constants/theme";
+
 const { width, height } = Dimensions.get("window");
 
-const getStartedBg = require("../../../assets/OnboardingBackgrounds/getStarted_bg.png");
-const onboard1Bg = require("../../../assets/OnboardingBackgrounds/onboard1_bg.png");
-const onboard2Bg = require("../../../assets/OnboardingBackgrounds/onboard2_bg.png");
-
-const data = [
-  { bg: getStartedBg, header: "Header 1" },
-  { bg: onboard1Bg, header: "Header 2" },
-  { bg: onboard2Bg, header: "Header 3" },
+const backgroundImageData = [
+  { bg: require("../../../assets/OnboardingBackgrounds/getStarted_bg.png") },
+  { bg: require("../../../assets/OnboardingBackgrounds/onboard1_bg.png") },
+  { bg: require("../../../assets/OnboardingBackgrounds/onboard2_bg.png") },
 ];
 
 const OnboardingScreens = () => {
@@ -29,7 +26,7 @@ const OnboardingScreens = () => {
   const handlePress = useCallback(() => {
     setCurrentIndex((prevIndex) => {
       const nextIndex = prevIndex + 1;
-      if (nextIndex < data.length) {
+      if (nextIndex < backgroundImageData.length) {
         flatListRef.current.scrollToOffset({
           animated: true,
           offset: nextIndex * width,
@@ -39,12 +36,12 @@ const OnboardingScreens = () => {
       return prevIndex;
     });
   }, []);
-  console.log(height);
+
   return (
     <View style={styles.container}>
       <FlatList
         ref={flatListRef}
-        data={data}
+        data={backgroundImageData}
         horizontal
         pagingEnabled
         scrollEnabled={false}
@@ -53,10 +50,10 @@ const OnboardingScreens = () => {
           <ImageBackground
             source={item.bg}
             style={styles.image}
-            resizeMode={height > 700 ? "cover" : "stretch"}
+            resizeMode={"stretch"}
           >
             <View style={styles.renderContainer}>
-              <TextComponent>{item.header}</TextComponent>
+              <TextComponent>{item.title}</TextComponent>
             </View>
           </ImageBackground>
         )}
@@ -73,10 +70,12 @@ const OnboardingScreens = () => {
           title="Get Started"
           onPress={handlePress}
         />
-        <TextComponent size="xs" textStyle="light" style={styles.legalText}>
-          By tapping next, you are agreeing to PlantID Terms of Use & Privacy
-          Policy.
-        </TextComponent>
+        {
+          <TextComponent size="xs" textStyle="light" style={styles.legalText}>
+            By tapping next, you are agreeing to PlantID Terms of Use & Privacy
+            Policy.
+          </TextComponent>
+        }
       </View>
     </View>
   );

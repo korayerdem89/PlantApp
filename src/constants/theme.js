@@ -9,6 +9,7 @@ const fonts = {
 const colors = {
   primary: "green",
   dark: "#000",
+  textColor: "#13231B",
   legalTextColor: "rgba(89,113,101,0.7)",
 };
 

@@ -11,25 +11,25 @@ const TextComponent = ({ size, textStyle, children, style }) => {
   //responsive fontsize
   switch (size) {
     case "xs":
-      fontSize = diag * 0.015;
+      fontSize = diag * 0.014;
       break;
     case "s":
-      fontSize = diag * 0.02;
+      fontSize = diag * 0.018;
       break;
     case "m":
-      fontSize = diag * 0.025;
+      fontSize = diag * 0.023;
       break;
     case "ml":
-      fontSize = diag * 0.03;
+      fontSize = diag * 0.027;
       break;
     case "l":
-      fontSize = diag * 0.035;
+      fontSize = diag * 0.032;
       break;
     case "xl":
-      fontSize = diag * 0.04;
+      fontSize = diag * 0.35;
       break;
     case "xxl":
-      fontSize = diag * 0.045;
+      fontSize = diag * 0.04;
       break;
     default:
       fontSize = diag * 0.025;
