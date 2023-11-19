@@ -4,7 +4,7 @@ import Diagnose from "../screens/tabScreens/diagnose";
 import Scan from "../screens/tabScreens/scan";
 import MyGarden from "../screens/tabScreens/myGarden";
 import Profile from "../screens/tabScreens/profile";
-import HomeIcon from "../../assets/BottomTabIcons/HomeIcon.svg";
+import HomeIcon from "../../assets/BottomTabIcons/HomeIcon";
 const Tab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
@@ -16,7 +16,7 @@ function BottomTabNavigator() {
     >
       <Tab.Screen
         options={{
-          tabBarIcon: ({ color }) => <HomeIcon color={color} />,
+          tabBarIcon: ({ color }) => <HomeIcon color={"red"} />,
         }}
         name="Home"
         component={Home}

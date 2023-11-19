@@ -8,7 +8,7 @@ const fonts = {
 };
 
 const colors = {
-  primary: "green",
+  primary: "#28AF6E",
   dark: "#000",
   textColor: "#13231B",
   legalTextColor: "rgba(89,113,101,0.7)",

@@ -1,6 +1,6 @@
 import { Text, Dimensions } from "react-native";
 import React from "react";
-
+import { colors } from "../constants/theme";
 const { width, height } = Dimensions.get("window");
 const diag = Math.sqrt(width * width + height * height);
 
@@ -64,6 +64,7 @@ const TextComponent = ({ size, textStyle, children, style }) => {
         {
           fontFamily: fontFamily,
           fontSize: fontSize,
+          color: colors.textColor,
         },
         style,
       ]}
