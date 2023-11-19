@@ -1,25 +1,29 @@
-import { StyleSheet, Text, SafeAreaView, Dimensions, View } from "react-native";
+import { StyleSheet, Dimensions, View } from "react-native";
 import React from "react";
-import { getStatusBarHeight } from "react-native-status-bar-height";
+import TopContainer from "./components/topContainer/TopContainer";
+import BottomContainer from "./components/bottomContainer/BottomContainer";
 
-const { width, height } = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
 
 const Home = () => {
   return (
-    <SafeAreaView style={styles.rootContainer}>
-      <View style={styles.container}>
-        <Text>Home</Text>
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <TopContainer style={styles.topContainer} />
+      <BottomContainer style={styles.bottomContainer} />
+    </View>
   );
 };
 
 export default Home;
 
 const styles = StyleSheet.create({
-  rootContainer: { flex: 1, paddingTop: getStatusBarHeight() + 12 },
   container: {
     flex: 1,
-    paddingHorizontal: width > 720 ? 24 : 20,
+  },
+  topContainer: {
+    flex: height > 720 ? 0.22 : 0.24,
+  },
+  bottomContainer: {
+    flex: height > 720 ? 0.78 : 0.76,
   },
 });
