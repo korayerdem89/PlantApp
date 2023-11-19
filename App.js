@@ -7,7 +7,7 @@ import OnboardingScreens from "./src/screens/onboardingScreens";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { fonts } from "./src/constants/theme";
-
+import BottomTabNavigator from "./src/bottomTabNavigator";
 const Stack = createNativeStackNavigator();
 export default function App() {
   //Font Yükleme Ayarları
@@ -31,6 +31,10 @@ export default function App() {
           gestureEnabled: false,
         }}
       >
+        <Stack.Screen
+          name="BottomTabNavigator"
+          component={BottomTabNavigator}
+        />
         <Stack.Screen name="OnboardingScreens" component={OnboardingScreens} />
       </Stack.Navigator>
       <StatusBar style="auto" />
