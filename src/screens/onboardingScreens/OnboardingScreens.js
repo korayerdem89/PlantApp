@@ -6,6 +6,7 @@ import {
   FlatList,
   StyleSheet,
   ScrollView,
+  Image,
 } from "react-native";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import ButtonComponent from "../../components/ButtonComponent";
@@ -36,9 +37,24 @@ const onboardingItems = [
     bg: require("../../../assets/OnboardingBackgrounds/paywall_bg.png"),
     paywall: true,
     paywallSlide: [
-      { id: 0, title: "Unlimited", subtitle: "Plant Identify" },
-      { id: 1, title: "Faster", subtitle: "Process" },
-      { id: 2, title: "Detailed", subtitle: "Plant Care" },
+      {
+        id: 0,
+        title: "Unlimited",
+        subtitle: "Plant Identify",
+        icon: require("../../../assets/paywall/slideIcon1.png"),
+      },
+      {
+        id: 1,
+        title: "Faster",
+        subtitle: "Process",
+        icon: require("../../../assets/paywall/slideIcon2.png"),
+      },
+      {
+        id: 2,
+        title: "Detailed",
+        subtitle: "Plant Care",
+        icon: require("../../../assets/paywall/slideIcon3.png"),
+      },
     ],
   },
 ];
@@ -102,15 +118,20 @@ const OnboardingScreens = () => {
                     {item.paywallSlide.map((slide) => {
                       return (
                         <View style={styles.featuresCard} key={slide.id}>
+                          <Image
+                            source={slide.icon}
+                            style={styles.paywallIcon}
+                            resizeMode="cover"
+                          />
                           <TextComponent
-                            size="l"
-                            textStyle="light"
+                            size="m"
+                            textStyle="medium"
                             style={{ color: "white" }}
                           >
                             {slide.title}
                           </TextComponent>
                           <TextComponent
-                            size="s"
+                            size="xs"
                             textStyle="light"
                             style={{ color: "rgba(255,255,255,0.7)" }}
                           >
@@ -146,17 +167,19 @@ const OnboardingScreens = () => {
           )}
           {onboardingItems[currentIndex].indicator && (
             <View style={styles.indicatorContainer}>
-              {onboardingItems.map((_, i) => {
-                return (
-                  <View
-                    key={i}
-                    style={[
-                      styles.dot,
-                      i + 1 === currentIndex && styles.dotActive,
-                    ]}
-                  />
-                );
-              })}
+              {onboardingItems
+                .filter((item) => !item.paywall)
+                .map((_, i) => {
+                  return (
+                    <View
+                      key={i}
+                      style={[
+                        styles.dot,
+                        i + 1 === currentIndex && styles.dotActive,
+                      ]}
+                    />
+                  );
+                })}
             </View>
           )}
         </View>
@@ -229,9 +252,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 16,
     marginRight: 8,
-    backgroundColor: "red",
+    backgroundColor: "rgba(255,255,255,0.08)",
     width: 0.39 * width,
     height: 0.31 * width,
     borderRadius: 14,
+    justifyContent: "space-around",
+  },
+  paywallIcon: {
+    width: 0.08 * width,
+    height: 0.08 * width,
+    marginBottom: 16,
   },
 });
