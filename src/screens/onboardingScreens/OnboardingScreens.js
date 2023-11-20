@@ -13,7 +13,6 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 import ButtonComponent from "../../components/ButtonComponent";
 import TextComponent from "../../components/TextComponent";
 import { colors } from "../../constants/theme";
-import { LinearGradient } from "expo-linear-gradient";
 import PaywallComponent from "./components/PaywallComponent";
 const { width, height } = Dimensions.get("window");
 

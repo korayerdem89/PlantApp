@@ -8,6 +8,9 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { fonts } from "./src/constants/theme";
 import BottomTabNavigator from "./src/bottomTabNavigator";
+import { Provider } from "react-redux";
+import { store } from "./src/redux/store";
+
 const Stack = createNativeStackNavigator();
 export default function App() {
   //Font Yükleme Ayarları
@@ -24,20 +27,25 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer onLayout={onLayoutRootView}>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-          gestureEnabled: false,
-        }}
-      >
-        <Stack.Screen
-          name="BottomTabNavigator"
-          component={BottomTabNavigator}
-        />
-        <Stack.Screen name="OnboardingScreens" component={OnboardingScreens} />
-      </Stack.Navigator>
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer onLayout={onLayoutRootView}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+            gestureEnabled: false,
+          }}
+        >
+          <Stack.Screen
+            name="BottomTabNavigator"
+            component={BottomTabNavigator}
+          />
+          <Stack.Screen
+            name="OnboardingScreens"
+            component={OnboardingScreens}
+          />
+        </Stack.Navigator>
+        <StatusBar style="auto" />
+      </NavigationContainer>
+    </Provider>
   );
 }

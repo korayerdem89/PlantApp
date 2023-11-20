@@ -41,10 +41,6 @@ const TopContainer = ({ style }) => {
 export default TopContainer;
 
 const styles = StyleSheet.create({
-  rootContainer: {
-    borderWidth: 1,
-    borderColor: "red",
-  },
   innerContainer: {
     paddingHorizontal: 24,
     paddingTop: 30,
