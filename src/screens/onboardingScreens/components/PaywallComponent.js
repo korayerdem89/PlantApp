@@ -64,7 +64,12 @@ const PaywallComponent = ({ item }) => {
               style={{ color: "rgba(255,255,255,0.7)" }}
             >
               $2.99/month,{" "}
-              <TextComponent size="xs">auto renewable</TextComponent>
+              <TextComponent
+                style={{ color: "rgba(255,255,255,0.7)" }}
+                size="xs"
+              >
+                auto renewable
+              </TextComponent>
             </TextComponent>
           </SubscriptionCard>
           <SubscriptionCard
@@ -79,13 +84,8 @@ const PaywallComponent = ({ item }) => {
             >
               1 Year
             </TextComponent>
-            <TextComponent
-              size="xs"
-              textStyle="light"
-              style={{ color: "rgba(255,255,255,0.7)" }}
-            >
-              $2.99/month,{" "}
-              <TextComponent size="xs">auto renewable</TextComponent>
+            <TextComponent size="xs" style={{ color: "rgba(255,255,255,0.7)" }}>
+              First 3 days free, then $529,99/year
             </TextComponent>
           </SubscriptionCard>
         </View>

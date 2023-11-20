@@ -22,20 +22,25 @@ const onboardingItems = [
     bg: require("../../../assets/OnboardingBackgrounds/getStarted_bg.png"),
     legal:
       "By tapping next, you are agreeing to PlantID Terms of Use & Privacy Policy.",
+    buttonTitle: "Get Started",
   },
   {
     id: 1,
     bg: require("../../../assets/OnboardingBackgrounds/onboard1_bg.png"),
     indicator: "indicator",
+    buttonTitle: "Continue",
   },
   {
     id: 2,
     bg: require("../../../assets/OnboardingBackgrounds/onboard2_bg.png"),
     indicator: "indicator",
+    buttonTitle: "Continue",
   },
   {
     id: 3,
     bg: require("../../../assets/OnboardingBackgrounds/paywall_bg.png"),
+    legal:
+      "After the 3-day free trial period you’ll be charged ₺274.99 per year unless you cancel before the trial expires. Yearly Subscription is Auto-Renewable",
     paywall: true,
     paywallSlide: [
       {
@@ -57,10 +62,11 @@ const onboardingItems = [
         icon: require("../../../assets/paywall/slideIcon3.png"),
       },
     ],
+    buttonTitle: "Try free for 3 days",
   },
 ];
 
-const OnboardingScreens = () => {
+const OnboardingScreens = ({ navigation }) => {
   const flatListRef = useRef();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -99,7 +105,9 @@ const OnboardingScreens = () => {
               {item.paywall && (
                 <>
                   <View style={styles.closeButton}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => navigation.replace("BottomTabNavigator")}
+                    >
                       <Image
                         source={require("../../../assets/closeIcon.png")}
                         style={{ width: 24, height: 24 }}
@@ -122,14 +130,54 @@ const OnboardingScreens = () => {
       <View style={styles.bottomContainer}>
         <ButtonComponent
           style={styles.button}
-          title="Get Started"
+          title={onboardingItems[currentIndex].buttonTitle}
           onPress={handlePress}
         />
-        <View style={styles.bottomTextOrIndicator}>
+        <View
+          style={[
+            styles.bottomTextOrIndicator,
+            { width: onboardingItems[currentIndex].paywall ? "100%" : "80%" },
+          ]}
+        >
           {onboardingItems[currentIndex].legal && (
-            <TextComponent size="xs" textStyle="light" style={styles.legalText}>
+            <TextComponent
+              size={onboardingItems[currentIndex].paywall ? "xxs" : "xs"}
+              textStyle="light"
+              style={styles.legalText}
+            >
               {onboardingItems[currentIndex].legal}
             </TextComponent>
+          )}
+          {onboardingItems[currentIndex].paywall && (
+            <View style={styles.legalLinks}>
+              <TextComponent size="xs" style={{ color: colors.legalTextColor }}>
+                Terms
+              </TextComponent>
+              <View
+                style={{
+                  backgroundColor: colors.legalTextColor,
+                  width: 5,
+                  height: 5,
+                  borderRadius: 5,
+                  marginHorizontal: 10,
+                }}
+              ></View>
+              <TextComponent size="xs" style={{ color: colors.legalTextColor }}>
+                Privacy
+              </TextComponent>
+              <View
+                style={{
+                  backgroundColor: colors.legalTextColor,
+                  width: 5,
+                  height: 5,
+                  borderRadius: 5,
+                  marginHorizontal: 10,
+                }}
+              ></View>
+              <TextComponent size="xs" style={{ color: colors.legalTextColor }}>
+                Restore
+              </TextComponent>
+            </View>
           )}
           {onboardingItems[currentIndex].indicator && (
             <View style={styles.indicatorContainer}>
@@ -188,12 +236,17 @@ const styles = StyleSheet.create({
     color: colors.legalTextColor,
     textAlign: "center",
   },
+  legalLinks: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 7,
+  },
   bottomTextOrIndicator: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    width: "80%",
-    marginTop: 15,
+    marginTop: 10,
     height: 35,
   },
   indicatorContainer: {

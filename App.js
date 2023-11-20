@@ -36,12 +36,12 @@ export default function App() {
           }}
         >
           <Stack.Screen
-            name="BottomTabNavigator"
-            component={BottomTabNavigator}
-          />
-          <Stack.Screen
             name="OnboardingScreens"
             component={OnboardingScreens}
+          />
+          <Stack.Screen
+            name="BottomTabNavigator"
+            component={BottomTabNavigator}
           />
         </Stack.Navigator>
         <StatusBar style="auto" />

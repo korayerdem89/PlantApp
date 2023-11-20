@@ -31,7 +31,7 @@ export default QuestionCard;
 const styles = StyleSheet.create({
   container: {
     width: 0.64 * width,
-    height: 0.2 * height,
+    height: 0.21 * height,
     marginRight: 10,
     overflow: "hidden",
     borderRadius: 12,
