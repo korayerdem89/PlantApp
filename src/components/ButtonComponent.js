@@ -1,6 +1,7 @@
 import React from "react";
 import { Pressable, StyleSheet, Dimensions } from "react-native";
 import TextComponent from "./TextComponent";
+import { colors } from "../constants/theme";
 const { width } = Dimensions.get("window");
 
 const ButtonComponent = ({ onPress, title, style }) => {
@@ -19,7 +20,7 @@ const ButtonComponent = ({ onPress, title, style }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#28AF6E",
+    backgroundColor: colors.primary,
     paddingVertical: 18,
     borderRadius: width < 380 ? 10 : 12,
   },

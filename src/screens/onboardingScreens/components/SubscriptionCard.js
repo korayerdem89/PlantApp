@@ -2,6 +2,7 @@ import { StyleSheet, TouchableOpacity, View, Dimensions } from "react-native";
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import TextComponent from "../../../components/TextComponent";
+import { colors } from "../../../constants/theme";
 const { width, height } = Dimensions.get("window");
 
 const SubscriptionCard = ({ type, children, onPress, subscriptionType }) => {
@@ -15,7 +16,7 @@ const SubscriptionCard = ({ type, children, onPress, subscriptionType }) => {
       ]
     : ["transparent", "rgba(40,175,110,0.15)", "rgba(40,175,110,0.7)"];
   const gradientLocations = isActive ? [0.3, 0.35, 0.85] : null;
-  const cardBorderColor = isActive ? "#28AF6E" : "rgba(255,255,255,0.3)";
+  const cardBorderColor = isActive ? colors.primary : "rgba(255,255,255,0.3)";
   const radioButtonStyle = isActive
     ? styles.activeRadioButton
     : styles.radioButton;
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     marginRight: width > 750 ? 12 : 10,
   },
   activeRadioButton: {
-    backgroundColor: "#28AF6E",
+    backgroundColor: colors.primary,
     width: width > 750 ? 24 : width > 730 ? 22 : 20,
     height: width > 750 ? 24 : width > 730 ? 22 : 20,
     borderRadius: 20,
