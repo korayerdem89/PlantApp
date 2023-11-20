@@ -3,6 +3,7 @@ import React from "react";
 import QuestionCard from "../QuestionCard";
 import TextComponent from "../../../../../components/TextComponent";
 import { useSelector } from "react-redux";
+import CategoriesCard from "../CategoriesCard";
 const { width, height } = Dimensions.get("window");
 
 const BottomContainer = ({ style }) => {
@@ -37,13 +38,25 @@ const BottomContainer = ({ style }) => {
       >
         Get Started
       </TextComponent>
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        renderItem={({ item }) => <QuestionCard question={item} />}
-        keyExtractor={(item) => item.id.toString()}
-        data={questions}
-      />
+      <View>
+        <FlatList
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          renderItem={({ item }) => <QuestionCard question={item} />}
+          data={questions}
+        />
+      </View>
+      <View style={{ marginTop: height > 720 ? 24 : 18 }}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item, index }) => (
+            <CategoriesCard category={item} index={index} />
+          )}
+          data={categories.data}
+          numColumns={2}
+          columnWrapperStyle={{ justifyContent: "space-between" }}
+        />
+      </View>
     </View>
   );
 };

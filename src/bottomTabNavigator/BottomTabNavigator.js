@@ -43,7 +43,7 @@ function BottomTabNavigator() {
         headerShown: false,
         tabBarInactiveTintColor: "#BDBDBD",
         tabBarActiveTintColor: colors.primary,
-        tabBarStyle: { height: 60, paddingBottom: 10 },
+        tabBarStyle: { height: 60, paddingBottom: 10, position: "absolute" },
         tabBarLabelStyle: {
           fontFamily: "Rubik-Regular",
         },
